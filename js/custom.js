@@ -2,13 +2,31 @@ $(document).ready(function() {
 	
 	$('.assignbook').click(function(e){
 			e.preventDefault();
-       $.get('http://localhost/lm/assignbook/assignbook',function(data){
+       $.get('create',function(data){
 			$('#assignbook').modal('show')
 		 		.find('#assignbookContent')
 		 		.html(data);
         });
 	});
+	$('.borrowbook').click(function(e){
+			e.preventDefault();
+       $.get('borrowbook',function(data){
+			$('#borrowbook').modal('show')
+		 		.find('#borrowbookContent')
+		 		.html(data);
+        });
+	});
 	
+	$('.returnbook').click(function(e){
+			e.preventDefault();
+			var id = $(this).attr("val");
+       $.get('returnbook?id='+id,function(data){
+			$('returnbook').modal('show')
+		 		.find('returnbookContent')
+			//.load($(this).attr('value'));
+		 		.html(data);
+        });
+	});
 	
 	$('.addauthor').click(function(e){
 			e.preventDefault();

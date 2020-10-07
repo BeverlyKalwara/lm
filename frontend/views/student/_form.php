@@ -1,37 +1,21 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use frontend\views\student;
-
-
+use yii\helpers\ArrayHelper;
+use common\models\User;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Student */
 /* @var $form yii\widgets\ActiveForm */
+$users = ArrayHelper::map(User::find()->all(), 'id', 'username');
 ?>
-<div class="row">
-  <div class="student-form">
-
+<div class="student-form">
     <?php $form = ActiveForm::begin(); ?>
-    
-   <div class="col-xs-12">
-    <?= $form->field($model, 'fullName')->textInput(['maxlength' => true,'placeholder'=>'Input Full Name'])->label(false) ?>
-    </div>
-    
-    <div class="col-xs-12">  
-    <?= $form->field($model, 'idNumber')->textInput(['maxlength' => true,'placeholder'=>'Input Id Number'])->label(false) ?>
-    </div>
-    
-    <div class="col-xs-12">
-    <?= $form->field($model, 'regNo')->textInput(['maxlength' => true,'placeholder'=>'Input Registration Number'])->label(false) ?>
-    </div>
-    
-    <div class="col-xs-12">
-       <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success pull-right col-xs-2']) ?>
-       </div>
+    <?= $form->field($model, 'userId')->dropDownList($users) ?>
+    <?= $form->field($model, 'fullName')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'idNumber')->textInput() ?>
+    <?= $form->field($model, 'regNo')->textInput(['maxlength' => true]) ?>
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-
- </div>
 </div>

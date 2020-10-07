@@ -39,7 +39,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; 2020 <a href="http://almsaeedstudio.com">Beverly Kalwara</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="http://almsaeedstudio.com"><?= \Yii::$app->user->identity->username ?></a>.</strong> All rights
     reserved.
 </footer>
 

@@ -9,13 +9,19 @@ $this->title = 'Create Student';
 $this->params['breadcrumbs'][] = ['label' => 'Students', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="student-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-       
-    ]) ?>
-
-</div>
+ <div class="col-lg-6">
+    <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+            </div>
+            <div class="box-body">
+                 <?= $this->render('_form', [
+                    'model' => $model,
+              
+                ]) ?>
+            
+         	</div>
+            <!-- /.box-body -->
+        </div>
+    </div>
