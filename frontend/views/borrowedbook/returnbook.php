@@ -8,14 +8,14 @@ use frontend\models\Book;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BorrowedBook */
 /* @var $form yii\widgets\ActiveForm */
-$sudents = ArrayHelper::map(Student::find()->all(), 'studentsId', 'fullName');
+$students = ArrayHelper::map(Student::find()->all(), 'studentsId', 'fullName');
 $books = ArrayHelper::map(Book::find()->where(['status'=>0])->all(), 'bookId', 'bookName');
 ?>
 <div class="borrowed-book-form">
     <?php $form = ActiveForm::begin(['id' => 'borrowedbook-create']); ?>
     
     
-    <?= $form->field($model, 'studentId')->dropDownList($sudents,['disabled' => true]) ?>
+    <?= $form->field($model, 'studentId')->dropDownList($students,['disabled' => true]) ?>
     <?= $form->field($model, 'bookId')->dropDownList($books,['disabled' => true]) ?>
     
     <?= $form->field($model, 'borrowDate')->textInput(['disabled' => true]) ?>

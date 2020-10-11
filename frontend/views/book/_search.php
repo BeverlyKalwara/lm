@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use frontend\models\Book;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BookSearch */
 /* @var $form yii\widgets\ActiveForm */
+$books = ArrayHelper::map(Book::find()->where(['status'=>0])->all(), 'bookId', 'bookName');
 ?>
 
 <div class="book-search">
@@ -15,9 +18,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'bookId') ?>
+    <?= $form->field($model, 'bookId')->dropDownList($books) ?>
 
-    <?= $form->field($model, 'bookName') ?>
+    <?= $form->field($model, 'bookName')->dropDownList($books) ?>
 
     <?= $form->field($model, 'referenceNo') ?>
 

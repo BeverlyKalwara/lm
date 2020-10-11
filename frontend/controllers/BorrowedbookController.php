@@ -112,6 +112,7 @@ class BorrowedbookController extends Controller
             'model'=>$model,
         ]);
     }
+    
     public function actionBorrowbook()
     {
         
@@ -132,7 +133,7 @@ class BorrowedbookController extends Controller
             'model' => $model,
         ]);
     }
-    
+  
     public function bookUpdate($bookId){
         $command = \Yii::$app->db->createCommand('UPDATE book SET status=1 WHERE bookId='.$bookId);
         $command->execute();

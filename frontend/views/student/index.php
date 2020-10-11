@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="box box-info">
             <div class="box-header with-border">
-          <?= Html::a('Create Student', ['create'], ['class' => 'btn btn-success']) ?>
+          <?= Html::a('Create Book', ['create'], ['class' => 'btn btn-success']) ?>
               <div style="text-align: center;">
                   <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
               </div>

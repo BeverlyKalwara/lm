@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use frontend\models\Book;
 use frontend\models\Student;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BorrowedBook */
@@ -25,8 +26,12 @@ $book = ArrayHelper::map(Book::find()->where(['status'=>0])->all(), 'bookId', 'b
 
     <?= $form->field($model, 'bookId')->dropDownList($book) ?>
 
-
-    <?= $form->field($model, 'expectedReturn')->textInput() ?>
+    <?= $form->field($model, 'expectedReturn')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => 'Enter expected return ...'],
+            'pluginOptions' => [
+            'autoclose'=>true
+    ]
+        ]); ?>
    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

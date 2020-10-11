@@ -73,7 +73,7 @@ class BookController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'bookAuthor'=>$bookAuthor
+            'bookAuthor'=>$bookAuthor,
         ]);
     }
     public function actionAddauthor()
@@ -90,6 +90,28 @@ class BookController extends Controller
             'model' => $model,
         ]);
     }
+    
+    public function actionBorrowbook()
+    {
+        
+        $searchModel = new BookSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = new \frontend\models\Borrowedbook();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $this->updateAfterReturn($model->bookId);
+                // form inputs are valid, do something here
+                return;
+            }
+        }
+        
+        return $this->renderAjax('borrowbook', [
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ]);
+    }
+    
 
     /**
      * Updates an existing Book model.

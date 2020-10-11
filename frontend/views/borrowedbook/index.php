@@ -6,6 +6,8 @@ use yii\bootstrap\Modal;
 use frontend\models\Book;
 use frontend\models\Borrowedbook;
 use frontend\models\Student;
+use yii\helpers\ArrayHelper;
+use common\models\User;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BorrowedbookSearch */
@@ -13,6 +15,7 @@ use frontend\models\Student;
 
 $this->title = 'Borrowed Books';
 $this->params['breadcrumbs'][] = $this->title;
+$users = ArrayHelper::map(User::find()->all(), 'id', 'username');
 $totalBooks = Book::find()->asArray()->all();
 $borrowedBooks =Borrowedbook::find()->asArray()->all();
 $totalStudents = Student::find()->asArray()->all();
@@ -59,6 +62,7 @@ $overdue = Borrowedbook::find()->where('expectedReturn < '.date('yy/m/d'))->andW
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+          <?php if(Yii::$app->user->can('librarian', 'admin')){?>
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-aqua"><i class="fa fa-book"></i></span>
@@ -71,11 +75,12 @@ $overdue = Borrowedbook::find()->where('expectedReturn < '.date('yy/m/d'))->andW
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <?php }?>
       </div>
 
 
       <div class="row">
-      <?php if(Yii::$app->user->can('librarian')){?>
+      <?php if(Yii::$app->user->can('librarian', 'admin')){?>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
@@ -105,6 +110,11 @@ $overdue = Borrowedbook::find()->where('expectedReturn < '.date('yy/m/d'))->andW
                 </div>
               </div>
             </div>
+           </div>
+          </div>
+         </div>
+           
+        
             <!-- /.box-header -->
             
             <div class="box-body table-responsive no-padding">
@@ -143,14 +153,17 @@ $overdue = Borrowedbook::find()->where('expectedReturn < '.date('yy/m/d'))->andW
                             return $date->format('F j, Y,');
                             },
                         ],
+                        
                         [
                             'label'=>'Return Book',
                             'format' => 'raw',
                             'value' => function ($dataProvider) {
-                            return '<span val="'.$dataProvider->bbId.'" class="btn btn-danger returnbook">Return</span>';
+                              
+                          return '<span val="'.$dataProvider->bbId.'" class="btn btn-danger returnbook">Return</span>';
                             },
                             
                         ],
+                          
                         //'actualReturnDate',
                         [
                             'label'=>'Status',

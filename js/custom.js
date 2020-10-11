@@ -8,25 +8,6 @@ $(document).ready(function() {
 		 		.html(data);
         });
 	});
-	$('.borrowbook').click(function(e){
-			e.preventDefault();
-       $.get('borrowbook',function(data){
-			$('#borrowbook').modal('show')
-		 		.find('#borrowbookContent')
-		 		.html(data);
-        });
-	});
-	
-	$('.returnbook').click(function(e){
-			e.preventDefault();
-			var id = $(this).attr("val");
-       $.get('returnbook?id='+id,function(data){
-			$('returnbook').modal('show')
-		 		.find('returnbookContent')
-			//.load($(this).attr('value'));
-		 		.html(data);
-        });
-	});
 	
 	$('.addauthor').click(function(e){
 			e.preventDefault();
@@ -36,4 +17,26 @@ $(document).ready(function() {
 		 		.html(data);
         });
 	});
+	
+	$('.returnbook').click(function(e){
+			e.preventDefault();
+			var id = $(this).attr("val");
+       $.get('returnbook?id='+id,function(data){
+			$('#returnbook').modal('show')
+		 		.find('#returnbookContent')
+			//.load($(this).attr('value'));
+		 		.html(data);
+        });
+	});
+	
+	$('.borrowbook').click(function(e){
+			e.preventDefault();
+       $.get('borrowbook',function(data){
+			$('#borrowbook').modal('show')
+		 		.find('#borrowbookContent')
+		 		.html(data);
+        });
+	});
+	
+	
 });

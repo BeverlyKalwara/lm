@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\BorrowedBook */
 
-$this->title = 'Create Borrowed Book';
+$this->title = 'Borrowed Book';
 $this->params['breadcrumbs'][] = ['label' => 'Borrowed Books', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
